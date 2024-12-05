@@ -33,7 +33,7 @@ let timer;
 
   useEffect(() => {
    
-    axios.get(`${process.env.REACT_APP_API_URL}/wheel_prizes`)
+    axios.get(`${process.env.REACT_APP_API_URL}wheel_prizes`)
       .then((response) => {
         setData(response.data);
       })
@@ -54,7 +54,7 @@ const handleSpinClick = async () => {
   if (!mustSpin && thisUser.keysForCode > 0) {
   	window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/spin`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}api/spin`, {
         telegramId: thisUser.telegram_id,
       });
 

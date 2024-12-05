@@ -46,7 +46,7 @@ let timer;
 	const telegram_id = thisUser.telegram_id
 
 	const handleVerify = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/levels/verify-code`, { id , userCode: code , telegram_id})
+    axios.post(`${process.env.REACT_APP_API_URL}levels/verify-code`, { id , userCode: code , telegram_id})
       .then(response => {
         setMessage(response.data.message);
         const newDataLevel = {
@@ -65,7 +65,7 @@ let timer;
         setMessage(err.response.data.message);
 
         // Если код неверный, снимаем 1 ключ
-        axios.post(`${process.env.REACT_APP_API_URL}/users/decrease-key`, { telegram_id })
+        axios.post(`${process.env.REACT_APP_API_URL}users/decrease-key`, { telegram_id })
           .then(() => {
           	setThisUser({...thisUser,keysForCode:thisUser.keysForCode - 1})
             setCode("");
@@ -125,7 +125,7 @@ const skipLevel = shopItems ? shopItems.find(keys=> keys.type === "skip_level") 
 async function openInvoice( price ) {
   try {
     // Отправляем параметры keys и price на бэкенд
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/create-invoice`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}api/create-invoice`, {
       keys:null,
       price,
     });
@@ -135,7 +135,7 @@ async function openInvoice( price ) {
     // Открываем счёт-фактуру в WebApp
     WebApp.openInvoice(invoiceLink, async (status) => {
 
-		await axios.post(`${process.env.REACT_APP_API_URL}/api/process-payment`, {
+		await axios.post(`${process.env.REACT_APP_API_URL}api/process-payment`, {
      		 invoiceLink,
      			telegram_id: WebApp.initDataUnsafe?.user?.id, // ID текущего пользователя
      		    type:"Skip_Level",

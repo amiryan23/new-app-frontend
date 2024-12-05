@@ -40,7 +40,7 @@ const Friends = () => {
   useEffect(() => {
     if (thisUser?.referral_id) {
       // Отправляем запрос на сервер для получения пользователей по referral_id
-      axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
+      axios.post(`${process.env.REACT_APP_API_URL}api/getReferralUsers`, {
         telegram_id: thisUser.telegram_id
       })
         .then((response) => {
@@ -85,7 +85,7 @@ const Friends = () => {
 					{referralUsers 
 					? friends 
 					: <div className={s.addRefContainer}>
-						<Link to={`https://t.me/share/url?url=${thisUser?.referral_code}&text=Hello fren! Join us, let's solve Santa's riddles together! 🎅`}>Invite Friends</Link>
+						<Link to={`https://t.me/share/url?url=${thisUser?.referral_code}&text=Hi fren! Join us, let's solve Santa's riddles together! 🎅`}>Invite Friends</Link>
 						<span className={s.noRefText}>You do not have any friends</span>
 					</div>}
 				</div>

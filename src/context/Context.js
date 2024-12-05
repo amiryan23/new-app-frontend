@@ -39,7 +39,7 @@ const tg = window.Telegram.WebApp
 
     };
 
-   axios.post(`${process.env.REACT_APP_API_URL}/auth/miniapp`, userData)
+   axios.post(`${process.env.REACT_APP_API_URL}auth/miniapp`, userData)
       .then(response => {
         setThisUser(response.data);
         setIsLoaded((prevIsLoaded)=>prevIsLoaded + 20)
@@ -48,7 +48,7 @@ const tg = window.Telegram.WebApp
         console.error('Error:', error);
       });
 
-    axios.get(`${process.env.REACT_APP_API_URL}/levels`)
+    axios.get(`${process.env.REACT_APP_API_URL}levels`)
     .then((response) => {
       setLevels(response.data);
       setIsLoaded((prevIsLoaded)=>prevIsLoaded + 20)
@@ -56,21 +56,21 @@ const tg = window.Telegram.WebApp
     .catch((err)=> console.log('Error fetching levels:',err))
 
 
-    axios.get(`${process.env.REACT_APP_API_URL}/users`)
+    axios.get(`${process.env.REACT_APP_API_URL}users`)
     .then((response) => {
       setUsers(response.data);
       setIsLoaded((prevIsLoaded)=>prevIsLoaded + 20)
     } )
     .catch((err)=> console.log('Error fetching levels:',err))
 
-    axios.get(`${process.env.REACT_APP_API_URL}/tasks`)
+    axios.get(`${process.env.REACT_APP_API_URL}tasks`)
     .then((response) => {
       setTasks(response.data);
       setIsLoaded((prevIsLoaded)=>prevIsLoaded + 20)
     } )
     .catch((err)=> console.log('Error fetching tasks:',err))
 
-    axios.get(`${process.env.REACT_APP_API_URL}/shop/items`)
+    axios.get(`${process.env.REACT_APP_API_URL}shop/items`)
     .then(response =>{ 
       setShopItems(response.data)
       setIsLoaded((prevIsLoaded)=>prevIsLoaded + 10)

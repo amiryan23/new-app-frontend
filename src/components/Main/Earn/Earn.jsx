@@ -18,7 +18,7 @@ const Earn = () => {
 
 	const handleClaimTask = async (taskId, telegramId , reward) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/tasks/claim`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}tasks/claim`, {
       taskId,
       telegram_id: telegramId,
     });
@@ -40,7 +40,7 @@ const Earn = () => {
 
 const handleClaimTaskWithPoints = async (taskId, telegramId , reward) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/tasks/claim-with-points`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}tasks/claim-with-points`, {
       taskId,
       telegram_id: telegramId,
     });

@@ -35,7 +35,7 @@ const Wallet = () => {
 
     const sendWalletAddressToServer = async (walletAddress) => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/update-wallet`, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}api/update-wallet`, {
                 telegramId: thisUser?.telegram_id, // Передаем telegram_id
                 walletAddress, // Передаем адрес кошелька
             });

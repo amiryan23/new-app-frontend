@@ -75,7 +75,7 @@ const Products = () => {
 
 const updateTeam = async (newTeam) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/select-team`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}users/select-team`, {
       telegram_id: thisUser.telegram_id, // Предполагается, что thisUser содержит telegram_id
       team: newTeam
     });
