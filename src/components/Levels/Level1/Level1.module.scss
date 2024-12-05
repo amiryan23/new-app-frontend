@@ -1,0 +1,298 @@
+.megaContainer{
+	width: 100%;
+	height: 100vh;
+	opacity: 0;
+  background-image:url('https://i.ibb.co/zRZtxh7/background1.jpg');
+  background-size:cover;
+  font-family: "Exo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  .container{
+  	width: 100%;
+  	height: 100vh;
+  	 background-color:rgba(0, 0, 0, 0.3);
+  	 padding: 15px;
+
+
+  	 .miniContainer{
+  	 	width: 100%;
+  	 	display: flex;
+  	 	justify-content: center;
+  	 	align-items: center;
+  	 	flex-direction: column;
+  	 	// gap:25px;
+  	 	// padding-top: 45px;
+
+.miniContent{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  	 	.content{
+  	 		width: 100%;
+  	 		display: flex;
+  	 		justify-content: flex-start;
+  	 		text-decoration: none;
+  	 		color: whitesmoke;
+  	 		font-size: 25px;
+  	 	}
+
+  	 	.item{
+  	 		text-decoration: none;
+  	 		display: flex;
+  	 		flex-direction: row;
+  	 		gap: 5px;
+  	 		align-items: center;
+  	 		justify-content: center;
+  	 		color: whitesmoke;
+  	 		font-size: 17px;
+  	 		font-weight: bold;
+
+  	 		svg{
+  	 			font-size: 25px;
+  	 			color: goldenrod;
+  	 		}
+
+  	 		.miniItem{
+  	 			display: flex;
+  	 			justify-content: center;
+  	 			align-items: center;
+  	 			svg{
+  	 				color: #999;
+  	 				font-size: 15px;
+  	 			}
+  	 		}
+  	 	}
+  	 }
+
+  	 	.content1{
+  	 		width: 90%;
+  	 		height: 390px;
+  	 		// background-color:   rgba(40, 44, 52, 1);
+  	 		border-radius: 9px;
+  	 		// border: 2px solid rgba(256, 256, 256, 0.5);
+  	 		padding: 5px;
+
+  	 		img{
+  	 			width: 100%;
+  	 			height: 100%;
+  	 		}
+  	 	}
+
+  	 	.content2{
+  	 		input{
+  	 			padding: 5px 15px 5px 15px;
+  	 			border: 1px solid rgba(256, 256, 256, 0.5);
+  	 			outline: none;
+  	 			background-color:    rgba(40, 44, 52, 0.7);
+  	 			border-radius: 9px;
+  	 			color: whitesmoke;
+  	 			font-weight: bold;
+  	 			font-size: 13px;
+  	 		}
+
+  	 		input::placeholder{
+  	 			font-size: 11px;
+  	 			font-family: monospace;
+  	 			color: rgba(256, 256, 256, 0.3);
+  	 		}
+  	 	}
+
+  	 	.content3{
+  	 		display: flex;
+  	 		flex-direction: column;
+  	 		gap: 3px;
+  	 		justify-content: center;
+  	 		align-items: center;
+
+  	 		.invalid {
+  	 			color: red;
+  	 			font-weight: bold;
+  	 			padding: 5px;
+  	 			border-radius: 9px;
+  	 			background-color: rgba(256, 256, 256, 0.4);
+  	 			text-shadow: 1px 1px 2px #222;
+  	 		}
+
+  	 		.item{
+  	 			display: flex;
+  	 			flex-direction: row;
+  	 			gap: 10px;
+
+
+  	 		button{
+ 			border-radius: 9px;
+			border: 1px solid rgba(256, 256, 256, 0.7);
+			outline: none;
+			color: whitesmoke;
+			font-size: 14px;
+			font-weight: bold;
+			filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+ 	    	-webkit-filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-moz-filter:  drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-ms-filter:  drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-o-filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+			text-decoration: none;
+			padding: 5px 25px 5px 25px;
+			background: linear-gradient(159deg, rgba(189,157,228,1) 0%, rgba(67,38,163,1) 93%);
+			cursor: pointer;
+			margin-top: 5px;
+			transition: 250ms linear;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 5px;
+
+			svg{
+                font-size: 17px;
+                color: goldenrod;
+                filter: drop-shadow(1px 1px 3px #222);
+            }
+  	 		}
+
+  	 		button:disabled{
+  	 			background: #999;
+  	 			opacity: 0.5;
+  	 			transition: 150ms linear;
+  	 			cursor: not-allowed;
+  	 		}
+
+  	 		.buyStarsButton{
+  	 			background:#324964 ;
+  	 			border-radius: 6px;
+  	 			display: flex;
+  	 			flex-direction: row;
+  	 			gap: 3px;
+  	 			justify-content: center;
+  	 			align-items: center;
+  	 			font-size: 12px;
+  	 			font-weight: bold;
+  	 			border: 1px solid rgba(256, 256, 256,0.3);
+  	 			font-family: monospace;
+  	 			color:rgba(256, 256, 256, 0.8);
+  	 			
+
+  	 			svg{
+  	 				color: goldenrod;
+  	 				font-size: 13px;
+  	 			}
+  	 		}
+
+  	 		.buyStarsButton:hover{
+  	 			color:rgba(256, 256, 256, 1);
+  	 			transform: scale(1.05);
+  	 			transition: 150ms linear;
+  	 		}
+  	 	}
+  	 	}
+  	 }
+  }
+
+  .completedContainer{
+  	width: 90%;
+
+  	padding: 7px;
+  	// background: linear-gradient(159deg, rgba(189,157,228,1) 0%, rgba(67,38,163,1) 93%);
+  	border-radius: 45px;
+  	animation: animBorder 3s linear infinite;
+  	margin-top: 50px;
+
+  	@keyframes animBorder {
+  		0%{background-color: rgba(189,157,228,1)}
+  		50%{background-color: rgba(67,38,163,0.5)}
+  		100%{background-color: rgba(189,157,228,1)}
+  	}
+
+  	.completedContent{
+  		width: 100%;
+  		// height: 300px;
+  		background-color:rgba(40, 44, 52, 0.1);
+  		border-radius: 45px;
+  		display: flex;
+  		flex-direction: column;
+  		justify-content: flex-start;
+  		gap: 1px;
+  		align-items: center;
+  		padding:0px 25px 25px 25px;
+  		backdrop-filter: blur(5px);
+ 	    -webkit-backdrop-filter:  blur(5px);
+    	-moz-backdrop-filter:  blur(5px);
+    	-ms-backdrop-filter:   blur(5px);
+    	-o-backdrop-filter: blur(5px);
+
+
+  		.item1{
+  			font-size: 13px;
+  			font-weight: bold;
+  			color: whitesmoke;
+
+  		}
+
+  		.item2{
+  			img{
+  				width: 230px;
+  				height: 230px;
+  				filter: drop-shadow(1px 1px 3px whitesmoke);
+  			}
+  		}
+
+
+  		.item3{
+
+  			display: flex;
+  			flex-direction: column;
+  			gap: 3px;
+  			align-items: center;
+  			justify-content: center;
+  			margin-top: 15px;
+
+
+  	 		button{
+ 			border-radius: 9px;
+			border: 1px solid rgba(256, 256, 256, 0.7);
+			outline: none;
+			color: whitesmoke;
+			font-size: 11px;
+			font-weight: bold;
+			filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+ 	    	-webkit-filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-moz-filter:  drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-ms-filter:  drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+        	-o-filter: drop-shadow(1px 1px 5px rgba(40, 44, 52, 0.5));
+			text-decoration: none;
+			padding: 5px 25px 5px 25px;
+			background: linear-gradient(159deg, rgba(189,157,228,1) 0%, rgba(67,38,163,1) 93%);
+			cursor: pointer;
+  	 		}
+
+  	 		button:disabled{
+  	 			background: #999;
+  	 			opacity: 0.7;
+  	 			transition: 250ms linear;
+  	 		}  	
+
+  	 		span{
+  	 			display: flex;
+  	 			flex-direction: row;
+  	 			gap: 1px;
+  	 			color:whitesmoke;
+  	 			justify-content: center;
+  	 			align-items: center;
+  	 			font-size: 10px;
+  	 			font-weight: bold;
+
+  	 			img{
+  	 				width: 20px;
+  	 				height: 20px;
+  	 			}
+  	 		}		
+  		}
+  	}
+  }
+}
+
+.animBlock1{
+	opacity: 1;
+	transition: 250ms linear;
+}
