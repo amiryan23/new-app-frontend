@@ -40,7 +40,7 @@ const Friends = () => {
   useEffect(() => {
     if (thisUser?.referral_id) {
       // Отправляем запрос на сервер для получения пользователей по referral_id
-      axios.post(`${process.env.REACT_APP_API_URL}api/getReferralUsers`, {
+      axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
         telegram_id: thisUser.telegram_id
       })
         .then((response) => {

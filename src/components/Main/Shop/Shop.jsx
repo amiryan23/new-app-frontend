@@ -17,7 +17,7 @@ async function openInvoice(keys, price) {
 	window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
   try {
     
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}api/create-invoice`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/create-invoice`, {
       keys,
       price,
     });
@@ -26,7 +26,7 @@ async function openInvoice(keys, price) {
 
     WebApp.openInvoice(invoiceLink, async (status) => {
 
-    	  await axios.post(`${process.env.REACT_APP_API_URL}api/process-payment`, {
+    	  await axios.post(`${process.env.REACT_APP_API_URL}/api/process-payment`, {
      		 invoiceLink,
      			telegram_id: WebApp.initDataUnsafe?.user?.id, 
      		    type:"Keys",
