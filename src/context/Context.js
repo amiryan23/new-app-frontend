@@ -23,8 +23,8 @@ const [isLoaded,setIsLoaded] = useState(0)
 
     WebApp.setHeaderColor("#282c34")
 
-const pathParts = window.location.pathname.split('/');
-const referrerId = pathParts[pathParts.length - 1].split('=')[1];
+const queryParams = new URLSearchParams(window.location.search);
+const referrerId = queryParams.get('startapp');
 const tg = window.Telegram.WebApp
 
 
