@@ -67,7 +67,7 @@ useEffect(()=>{
 
   return (
     
-    <TonConnectUIProvider manifestUrl="https://purple-many-cow-693.mypinata.cloud/ipfs/QmdpgVxKBaFndL5yCPgPoKRWVZy8Yin6qj1kqw1ereN3Nd">
+    <TonConnectUIProvider manifestUrl="https://new-app-santa-quest.netlify.app/tonconnect-manifest.json">
     <BrowserRouter>
     <div className="App">
     {loading ? ""  : <Loading />}
