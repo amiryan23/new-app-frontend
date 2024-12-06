@@ -1,5 +1,4 @@
 import s from './Shop.module.scss'
-import shop from './../../../assets/shop.gif'
 import { GiHouseKeys } from "react-icons/gi";
 import { FaKey } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";

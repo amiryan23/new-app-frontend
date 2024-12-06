@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useContext, useState, useRef ,useMemo} from 'react';
 import axios from 'axios'
 import WebApp from '@twa-dev/sdk'
-import eruda from 'eruda'
 const MyContext = createContext();
 
 
@@ -22,6 +21,8 @@ const [isLoaded,setIsLoaded] = useState(0)
   useEffect(() => {
 
     WebApp.setHeaderColor("#282c34")
+    window.Telegram.WebApp.disableVerticalSwipes()
+    window.Telegram.WebApp.expand();
 
 const tg = window.Telegram.WebApp
 

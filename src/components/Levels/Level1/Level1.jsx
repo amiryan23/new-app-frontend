@@ -3,9 +3,6 @@ import React,{useContext,useRef,useEffect,useState} from 'react'
 import {useParams,Link}  from 'react-router-dom'
 import { MyContext } from './../../../context/Context'
 import axios from 'axios'
-import santaFun from './../../../assets/santa_fun.png'
-import coin from './../../../assets/coin.png'
-import paper from './../../../assets/paper.png'
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { IoKeySharp } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
@@ -194,7 +191,7 @@ async function openInvoice( price ) {
 					:<>
 					<div className={s.miniContent}><Link to="/" className={s.content}><RiArrowGoBackLine/></Link><Link to='/shop' className={s.item}>{thisUser?.keysForCode}<IoKeySharp/></Link></div>
 					<div className={s.content1}>
-						<img src={paper} alt="" />
+						{/* <img src={selectedLevel.imgUrl} alt="" /> */}
 					</div>
 					<div className={s.content2}>
 						<input value={code} placeholder="Enter your code" onChange={(e)=>{setCode(e.target.value)}}type="text" maxLength={16} />

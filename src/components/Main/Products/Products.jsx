@@ -1,10 +1,7 @@
 import s from './Products.module.scss'
-import Person from './../../../assets/person.png'
 import { Typewriter } from 'react-simple-typewriter'
 import React,{useState,useRef,useEffect,useContext} from 'react'
 import { MyContext } from './../../../context/Context'
-import squad1 from './../../../assets/squad1.png'
-import squad2 from './../../../assets/squad2.png'
 import axios from 'axios'
 import { IoCheckmarkDoneSharp,IoLockClosed } from "react-icons/io5";
 import CountUp from 'react-countup';
@@ -76,7 +73,7 @@ const Products = () => {
 const updateTeam = async (newTeam) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/select-team`, {
-      telegram_id: thisUser.telegram_id, // Предполагается, что thisUser содержит telegram_id
+      telegram_id: thisUser?.telegram_id, 
       team: newTeam
     });
     setThisUser({...thisUser, team: newTeam});
@@ -87,9 +84,9 @@ const updateTeam = async (newTeam) => {
   }
 };
 
-const usersJoinedTeam = users ? users.filter(user => user.team === thisUser.team).length + 1 : "" 
+const usersJoinedTeam = users ? users.filter(user => user.team === thisUser?.team).length + 1 : "" 
 
-const  earnedPoints = users ? users.filter(user => user.team === thisUser.team).map(user => user.points).reduce((a, b) => a + b, 0) : ""
+const  earnedPoints = users ? users.filter(user => user.team === thisUser?.team).map(user => user.points).reduce((a, b) => a + b, 0) : ""
 
 	return (
 		<div className={s.megaContainer}>
@@ -97,7 +94,7 @@ const  earnedPoints = users ? users.filter(user => user.team === thisUser.team).
 			? <dialog className={s.helpContainer} open={openModal}>
 				<div className={s.helpContent}>
 				<div className={s.item1} ref={animBlock1}>
-					<img src={Person} alt="" />
+					<img src="https://i.ibb.co/hdnM00R/person.png" alt="" />
 				</div>
 				<div className={s.item2} ref={animBlock2}>
 			<Typewriter
@@ -187,7 +184,7 @@ const  earnedPoints = users ? users.filter(user => user.team === thisUser.team).
 					</span>
 				</div>
 				</div> }
-				{thisUser.team !== null
+				{thisUser?.team !== null
 				? <div className={animation ? s.teamContainer : `${s.teamContainer} ${s.animBlock5}`}>
 					<div className={s.teamContent}>
 							<div className={s.content1}>Team {thisUser?.team}</div>

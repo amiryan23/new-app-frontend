@@ -6,9 +6,13 @@ import axios from 'axios'
 import { MdDone } from "react-icons/md";
 import { useTonAddress  } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk'
+import { SiSharex } from "react-icons/si";
 
 
 const Earn = () => {
+
+	const [taskOtherCompleted,setTaskOtherCompleted] = useState()
+	const [taskStory,setTaskStory] = useState(false)
 
 	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted} = useContext(MyContext);
 
@@ -16,18 +20,37 @@ const Earn = () => {
 
 	const animBlock = useRef()
 
-	const handleClaimTask = async (taskId, telegramId , reward) => {
+
+const shareToStory = (mediaUrl, params = {}) => {
+  if (window.Telegram.WebApp && typeof window.Telegram.WebApp.shareToStory === "function") {
+    window.Telegram.WebApp.shareToStory(mediaUrl, params);
+  } else {
+    console.error("Telegram WebApp API is not available or doesn't support shareToStory.");
+  }
+};
+
+
+const mediaUrl = "https://i.ibb.co/ZKnG8pJ/2.png";
+const params = {
+  text: `Hi fren! Join us, let's solve Santa's riddles together! 🎅 ${thisUser?.referral_code}` , 
+  widget_link: {
+    url: thisUser?.referral_code, 
+    name: "Santa Quest", 
+  },
+};
+
+	const handleClaimTask = async (taskId , reward) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/tasks/claim`, {
       taskId,
-      telegram_id: telegramId,
+      telegram_id: thisUser?.telegram_id,
     });
     console.log(response.data.message);
-    setThisUser({...thisUser,points:thisUser.points + reward})
+    setThisUser({...thisUser,points:thisUser?.points + reward})
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId
-          ? { ...task, is_completed: [...task.is_completed, telegramId] }
+          ? { ...task, is_completed: [...task.is_completed, thisUser?.telegram_id] }
           : task
       )
     );
@@ -38,18 +61,18 @@ const Earn = () => {
 };
 
 
-const handleClaimTaskWithPoints = async (taskId, telegramId , reward) => {
+const handleClaimTaskWithPoints = async (taskId , reward) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/tasks/claim-with-points`, {
       taskId,
-      telegram_id: telegramId,
+      telegram_id: thisUser?.telegram_id,
     });
     console.log(response.data.message);
-    setThisUser({...thisUser,points:thisUser.points + reward})
+    setThisUser({...thisUser,points:thisUser?.points + reward})
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId
-          ? { ...task, is_completed: [...task.is_completed, telegramId] }
+          ? { ...task, is_completed: [...task.is_completed, thisUser?.telegram_id] }
           : task
       )
     );
@@ -79,18 +102,76 @@ useEffect(()=>{
 						<span className={s.item2}>
 							{task.description}
 						</span>
-						{task.is_completed.includes(thisUser.telegram_id)
+						{task.is_completed.includes(thisUser?.telegram_id)
 						? <span className={s.item3}>
 							<span className={s.claimed}><MdDone/></span>
 							<span>+{task.reward}</span>
 						</span> 
 						:<span className={s.item3}>
 							{taskCompleted === task.id 
-							?	<button onClick={()=>{handleClaimTask(task.id,thisUser?.telegram_id,task.reward)}}>Claim</button>
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
 							: <span className={s.linkItem} 
 								onClick={()=>{
 									setTaskCompleted(task.id)
 									WebApp.openTelegramLink(task.link)
+								
+								}} >Start</span>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
+
+
+	const taskTableStory = tasks ?
+	tasks.filter(task=> task.type === 'story').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<SiSharex />
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{taskStory 
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span className={s.linkItem} 
+								onClick={()=>{
+									shareToStory(mediaUrl,params)
+									setTaskStory(true)
+								}} >Start</span>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
+
+		const taskTableOtherLinks = tasks ?
+	tasks.filter(task=> task.type === 'otherlink').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<img src={task.imgUrl} alt="" />
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{taskOtherCompleted === task.id 
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span  className={s.linkItem} 
+								onClick={()=>{
+									setTaskOtherCompleted(task.id)
+									WebApp.openLink(task.link)
 								}} >Start</span>
 							}
 							<span>+{task.reward}</span>
@@ -110,14 +191,14 @@ useEffect(()=>{
 						<span className={s.item2}>
 							{task.description}
 						</span>
-						{task.is_completed.includes(thisUser.telegram_id)
+						{task.is_completed.includes(thisUser?.telegram_id)
 						? <span className={s.item3}>
 							<span className={s.claimed}><MdDone/></span>
 							<span>+{task.reward}</span>
 						</span>
 						: <span className={s.item3}>
-						{thisUser.points >= task.earnedPoints 
-						? <button onClick={()=>{handleClaimTaskWithPoints(task.id,thisUser?.telegram_id,task.reward)}}>Claim</button>
+						{thisUser?.points >= task.earnedPoints 
+						? <button onClick={()=>{handleClaimTaskWithPoints(task.id,task.reward)}}>Claim</button>
 						: <button disabled={true}>Claim</button>
 					    }
 					    <span>+{task.reward}</span>
@@ -136,14 +217,14 @@ useEffect(()=>{
 						<span className={s.item2}>
 							{task.description}
 						</span>
-						{task.is_completed.includes(thisUser.telegram_id)
+						{task.is_completed.includes(thisUser?.telegram_id)
 						? <span className={s.item3}>
 							<span className={s.claimed}><MdDone/></span>
 							<span>+{task.reward}</span>
 						</span> 
 						:<span className={s.item3}>
 							{userFriendlyAddress
-							?	<button onClick={()=>{handleClaimTaskWithPoints(task.id,thisUser?.telegram_id,task.reward)}}>Claim</button>
+							?	<button onClick={()=>{handleClaimTaskWithPoints(task.id,task.reward)}}>Claim</button>
 							: <Link className={s.linkItem} to="/wallet">Start</Link>
 							}
 							<span>+{task.reward}</span>
@@ -164,6 +245,8 @@ useEffect(()=>{
 				</div>
 				<div className={s.content2}>
 				{taskTableLinks}
+				{taskTableOtherLinks}
+				{taskTableStory}
 				{taskTableEarn}
 				{taskTableWallet}
 				</div>

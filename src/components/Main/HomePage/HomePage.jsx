@@ -1,5 +1,4 @@
 import s from './HomePage.module.scss'
-import Person from './../../../assets/person.png'
 import { Typewriter } from 'react-simple-typewriter'
 import {Link} from 'react-router-dom'
 import { MyContext } from './../../../context/Context'
