@@ -122,8 +122,8 @@ const handleClaimTask = async (taskId, keysReward) => {
 	tasks.filter(task=> task.type === 'elvesKey').map(task=>  
 							!task.is_completed.includes(thisUser?.telegram_id)
 							?
-						<div className={referralUsers?.length === task.earnedPoints ? `${s.itemElves1} ${s.taskCompleted}` : s.itemElves1} 
-						onClick={()=>{referralUsers?.length === task.earnedPoints && handleClaimTask(task.id,task.reward)}}>
+						<div className={referralUsers?.length >= task.earnedPoints ? `${s.itemElves1} ${s.taskCompleted}` : s.itemElves1} 
+						onClick={()=>{referralUsers?.length >= task.earnedPoints && handleClaimTask(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
 							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <IoKeySharp/></span>
@@ -142,8 +142,8 @@ const handleClaimTask = async (taskId, keysReward) => {
 	tasks.filter(task=> task.type === 'deersKey').map(task=>  
 							!task.is_completed.includes(thisUser?.telegram_id)
 							?
-						<div className={thisUser?.points === task.earnedPoints ? `${s.itemDeers1} ${s.taskCompleted}` : s.itemDeers1} 
-						onClick={()=>{thisUser?.points === task.earnedPoints && handleClaimTask(task.id,task.reward)}}>
+						<div className={thisUser?.points >= task.earnedPoints ? `${s.itemDeers1} ${s.taskCompleted}` : s.itemDeers1} 
+						onClick={()=>{thisUser?.points >= task.earnedPoints && handleClaimTask(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
 							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${thisUser?.points}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <IoKeySharp/></span>
@@ -185,8 +185,8 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 	tasks.filter(task=> task.type === 'elvesPoints').map(task=>  
 							!task.is_completed.includes(thisUser?.telegram_id)
 							?
-						<div className={thisUser?.points === task.earnedPoints ? `${s.itemElves2} ${s.taskCompleted}` : s.itemElves2} 
-						onClick={()=>{thisUser?.points === task.earnedPoints && handleClaimTaskWithPoints(task.id,task.reward)}}>
+						<div className={thisUser?.points >= task.earnedPoints ? `${s.itemElves2} ${s.taskCompleted}` : s.itemElves2} 
+						onClick={()=>{thisUser?.points >= task.earnedPoints && handleClaimTaskWithPoints(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
 							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${thisUser?.points}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /></span>
@@ -205,8 +205,8 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 	tasks.filter(task=> task.type === 'deersPoints').map(task=>  
 							!task.is_completed.includes(thisUser?.telegram_id)
 							?
-						<div className={referralUsers?.length === task.earnedPoints ? `${s.itemDeers2} ${s.taskCompleted}` : s.itemDeers2} 
-						onClick={()=>{referralUsers?.length === task.earnedPoints && handleClaimTaskWithPoints(task.id,task.reward)}}>
+						<div className={referralUsers?.length >= task.earnedPoints ? `${s.itemDeers2} ${s.taskCompleted}` : s.itemDeers2} 
+						onClick={()=>{referralUsers?.length >= task.earnedPoints && handleClaimTaskWithPoints(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
 							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /></span>
