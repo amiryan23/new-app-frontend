@@ -208,7 +208,7 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 						<div className={referralUsers?.length >= task.earnedPoints ? `${s.itemDeers2} ${s.taskCompleted}` : s.itemDeers2} 
 						onClick={()=>{referralUsers?.length >= task.earnedPoints && handleClaimTaskWithPoints(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
-							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length}/${task.earnedPoints}`}</span></span>
+							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length || 0}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /></span>
 						</span>
 					</div>
@@ -360,10 +360,13 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 				</div>
 				</div>
 				</div>
-			   :  <div className={animation ? s.teamContainer : `${s.teamContainer} ${s.animBlock5}`}>
+			   :  
+			   <div className={s.teamMegaContainer}>
+			   <div className={animation ? s.teamContainer : `${s.teamContainer} ${s.animBlock5}`}>
 					<div className={s.closedContent}>
   						<IoLockClosed/>
 					</div>
+				</div>
 				</div>}
 				</div>
 			</div>

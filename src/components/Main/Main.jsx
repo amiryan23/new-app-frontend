@@ -8,6 +8,7 @@ import Friends from './Friends/Friends'
 import Wallet from './Wallet/Wallet'
 import Shop from './Shop/Shop'
 import WheelGame from './miniGames/Wheel/Wheel'
+import ClaimPoints from './ClaimPoints/ClaimPoints'
 import { Route,Routes,useParams  } from 'react-router-dom';
 
 
@@ -28,6 +29,7 @@ const Main = () => {
 			<Route path="/wallet" element={<Wallet/>} />
 			<Route path="/shop" element={<Shop/>} />
 			<Route path="/wheel" element={<WheelGame/>} />
+			<Route path="/claimPoints" element={<ClaimPoints/>} />
 		</Routes>
 		</main>
 		)

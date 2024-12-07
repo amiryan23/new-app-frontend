@@ -94,6 +94,11 @@ const HomePage = () => {
 				<span className={s.miniItem1}>&#x1f3a1;</span>
 				<span className={s.miniItem2}>Wheel</span>
 			</Link>
+			{/* <Link to='/claimPoints' className={s.linkForClaimPoints}> */}
+			{/* 	{/* <img src="https://i.ibb.co/4Zx5B2h/IMG-6672-Photoroom.png" className={s.miniItem1}/> */} */}
+			{/* 	<span className={s.miniItem1}>&#x1f3a1;</span> */}
+			{/* 	<span className={s.miniItem2}>Wheel</span> */}
+			{/* </Link> */}
 			</div>
 		</div>
 		)

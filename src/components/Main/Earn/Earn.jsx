@@ -197,7 +197,7 @@ useEffect(()=>{
 						:<span className={s.item3}>
 							{referralUsers?.length >= task.earnedPoints
 							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
-							: <span  className={s.linkItemRef}>{`${referralUsers?.length}/${task.earnedPoints}`}</span>
+							: <span  className={s.linkItemRef}>{`${referralUsers?.length || 0}/${task.earnedPoints}`}</span>
 							}
 							<span>+{task.reward}</span>
 						</span>

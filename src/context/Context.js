@@ -88,6 +88,7 @@ const tg = window.Telegram.WebApp
         })
         .catch((error) => {
           console.error('Error fetching referral users:', error);
+          setIsLoaded((prevIsLoaded)=>prevIsLoaded + 5)
         });
     
 
