@@ -157,6 +157,15 @@
 			cursor: pointer;
 				}
 
+				.linkItemRef{
+					width: 60px;
+					font-size: 15px;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
+
 			button{
  			border-radius: 9px;
 			border: 2px solid rgba(256, 256, 256, 0.7);

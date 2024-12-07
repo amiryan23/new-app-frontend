@@ -12,6 +12,7 @@ const [levels,setLevels] = useState(null)
 const [users,setUsers] = useState(null)
 const [notific,setNotific] = useState(null)
 const [tasks,setTasks] = useState(null)
+const [referralUsers, setReferralUsers] = useState(null);
 const [taskCompleted,setTaskCompleted] = useState(null)
 const [shopItems, setShopItems] = useState(null);
 const [isLoaded,setIsLoaded] = useState(0)
@@ -72,9 +73,23 @@ const tg = window.Telegram.WebApp
     axios.get(`${process.env.REACT_APP_API_URL}/shop/items`)
     .then(response =>{ 
       setShopItems(response.data)
-      setIsLoaded((prevIsLoaded)=>prevIsLoaded + 10)
+      setIsLoaded((prevIsLoaded)=>prevIsLoaded + 5)
     })
     .catch(error => console.error('Error fetching shop items:', error));
+
+    
+    
+      axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
+        telegram_id: tg?.initDataUnsafe?.user?.id
+      })
+        .then((response) => {
+          setReferralUsers(response.data); 
+          setIsLoaded((prevIsLoaded)=>prevIsLoaded + 5)
+        })
+        .catch((error) => {
+          console.error('Error fetching referral users:', error);
+        });
+    
 
   }, []);
 
@@ -92,10 +107,11 @@ const tg = window.Telegram.WebApp
         setTasks,
         taskCompleted,
         setTaskCompleted,
+        referralUsers,
         shopItems,
         isLoaded,
         setIsLoaded
-        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,shopItems,isLoaded,setIsLoaded]);
+        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,shopItems,isLoaded,setIsLoaded]);
 
   return (
     <MyContext.Provider 

@@ -140,9 +140,12 @@
 				flex-direction: row;
 				gap: 5px;
 				align-items: center;
+				justify-content: center;
 				font-family: monospace;
 
 				svg{
+					margin-bottom: 3px;
+					font-size: 15px;
 					color: goldenrod;
 					filter: drop-shadow(1px 1px 3px #222);
 				}

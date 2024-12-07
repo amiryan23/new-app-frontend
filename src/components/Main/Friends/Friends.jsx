@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom'
 
 const Friends = () => {
 
-	const {  thisUser,setNotific } = useContext(MyContext);
-	 const [referralUsers, setReferralUsers] = useState(null);
+	const {  thisUser,setNotific,referralUsers } = useContext(MyContext);
+	 
 
 	const animBlock = useRef()
 
@@ -37,20 +37,20 @@ const Friends = () => {
 
 
 
-  useEffect(() => {
-    if (thisUser?.referral_id) {
-      // Отправляем запрос на сервер для получения пользователей по referral_id
-      axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
-        telegram_id: thisUser.telegram_id
-      })
-        .then((response) => {
-          setReferralUsers(response.data); // Сохраняем найденных пользователей
-        })
-        .catch((error) => {
-          console.error('Error fetching referral users:', error);
-        });
-    }
-  }, [thisUser]);
+  // useEffect(() => {
+  //   if (thisUser?.referral_id) {
+  //     // Отправляем запрос на сервер для получения пользователей по referral_id
+  //     axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
+  //       telegram_id: thisUser.telegram_id
+  //     })
+  //       .then((response) => {
+  //         setReferralUsers(response.data); // Сохраняем найденных пользователей
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching referral users:', error);
+  //       });
+  //   }
+  // }, [thisUser]);
 
 
   const friends = referralUsers 
@@ -82,7 +82,7 @@ const Friends = () => {
 				</div>
 				<div className={s.content3}>
 					<div className={s.totalRef}>Referrals: {referralUsers ? friends?.length : 0}</div>
-					{referralUsers 
+					{referralUsers?.length > 0 
 					? friends 
 					: <div className={s.addRefContainer}>
 						<Link to={`https://t.me/share/url?url=${thisUser?.referral_code}&text=Hi fren! Join us, let's solve Santa's riddles together! 🎅`}>Invite Friends</Link>

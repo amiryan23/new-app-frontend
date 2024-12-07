@@ -7,6 +7,7 @@ import { MdDone } from "react-icons/md";
 import { useTonAddress  } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk'
 import { SiSharex } from "react-icons/si";
+import { FaUserFriends } from "react-icons/fa";
 
 
 const Earn = () => {
@@ -14,7 +15,7 @@ const Earn = () => {
 	const [taskOtherCompleted,setTaskOtherCompleted] = useState()
 	const [taskStory,setTaskStory] = useState(false)
 
-	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted} = useContext(MyContext);
+	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers} = useContext(MyContext);
 
 	const userFriendlyAddress = useTonAddress();
 
@@ -180,6 +181,32 @@ useEffect(()=>{
 					</div> )
 	: ""
 
+			const taskTableReferral = tasks ?
+	tasks.filter(task=> task.type === 'referral').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<FaUserFriends/>
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{referralUsers?.length === task.earnedPoints
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span  className={s.linkItemRef}>{`${referralUsers?.length}/${task.earnedPoints}`}</span>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
+
+
+
 	const taskTableEarn = tasks ?
 	tasks.filter(task => task.type === 'earn').map(task =>
 		<div className={s.taskContainer} key={task.id}>
@@ -246,6 +273,7 @@ useEffect(()=>{
 				<div className={s.content2}>
 				{taskTableLinks}
 				{taskTableOtherLinks}
+				{taskTableReferral}
 				{taskTableStory}
 				{taskTableEarn}
 				{taskTableWallet}
