@@ -1,6 +1,7 @@
 .megaContainer{
 	width: 100%;
-	height: 100vh;
+	height: 120vh;
+	// overflow-y: scroll;
 
 
 .Container{
@@ -16,6 +17,7 @@
     -moz-backdrop-filter:  blur(2px);
     -ms-backdrop-filter:   blur(2px);
     -o-backdrop-filter: blur(2px);
+    
 
 
 
@@ -208,7 +210,7 @@
 .linkForKeysContainer{
 
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	right: 0px;
 	display: flex;
 	flex-direction: column;
@@ -256,7 +258,7 @@
 
 .linkForClaimPoints{
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	left: 0px;
 	display: flex;
 	flex-direction: column;

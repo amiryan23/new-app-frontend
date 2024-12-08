@@ -5,6 +5,7 @@
   border-radius:10px;
   background-image:url('https://i.ibb.co/mT3xSmR/background2.jpg"');
   background-size:cover;
+  background-attachment: scroll;
 
  
   overflow-x: hidden;

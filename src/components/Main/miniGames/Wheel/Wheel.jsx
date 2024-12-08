@@ -7,6 +7,7 @@ import CountUp from 'react-countup';
 import { IoKeySharp } from "react-icons/io5";
 import axios from "axios"
 import WebApp,{Telegram} from '@twa-dev/sdk'
+import { useReward } from 'react-rewards';
 
 const WheelGame = () => {
 
@@ -16,6 +17,8 @@ const WheelGame = () => {
   const [data, setData] = useState(null);
 
   const {  thisUser,setThisUser,setNotific } = useContext(MyContext);
+
+  const {reward: confettiReward, isAnimating: isConfettiAnimating} = useReward('confettiReward', 'confetti');
 
 
     const loadingData = [
@@ -76,6 +79,7 @@ const handleSpinClick = async () => {
               points: updatedPoints,
             }));
             setNotific(`You received ${rewardPoints} ${typePrize === "points" ? "Points" : "Key"} `)
+            confettiReward()
            setTimeout(()=>{setMustSpin(false)},5000) ;
           };
         });
@@ -121,7 +125,7 @@ const handleSpinClick = async () => {
     }
         }}
     />
-    <button onClick={handleSpinClick} disabled={mustSpin || !thisUser?.keysForCode > 0 ? true : false}>{!mustSpin ? <>1 <IoKeySharp/></> : "Wait"}</button>
+    <button id="confettiReward" onClick={handleSpinClick} disabled={mustSpin || !thisUser?.keysForCode > 0 ? true : false}>{!mustSpin ? <>1 <IoKeySharp/></> : "Wait"}</button>
    		 </div>
    		 
 			</div>

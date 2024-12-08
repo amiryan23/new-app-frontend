@@ -1,73 +1,137 @@
-import s from './ClaimPoints.module.scss'
-import { useState, useEffect , useContext } from 'react';
+import s from './ClaimPoints.module.scss';
+import { useState, useEffect, useContext , useRef} from 'react';
 import axios from 'axios';
-import { MyContext } from './../../../context/Context'
-
-
+import { MyContext } from './../../../context/Context';
+import CountUp from 'react-countup';
+import { useReward } from 'react-rewards';
 
 const ClaimPoints = () => {
-const [pointsFromChest, setPointsFromChest] = useState(null);
+  const [pointsFromChest, setPointsFromChest] = useState(null);
   const [message, setMessage] = useState('');
-  const [nextClaimTime, setNextClaimTime] = useState(null);
   const [isClaimable, setIsClaimable] = useState(true);
-  const { thisUser } = useContext(MyContext);
+  
+  const { thisUser, setThisUser, setNotific ,remainingTime, setRemainingTime} = useContext(MyContext);
 
-  useEffect(() => {
-    const updateRemainingTime = () => {
-      if (nextClaimTime) {
-        const currentTime = new Date();
-        const remainingTime = new Date(nextClaimTime) - currentTime;
+  const { reward: confettiReward, isAnimating: isConfettiAnimating } = useReward('confettiReward', 'confetti');
 
-        if (remainingTime <= 0) {
-          setIsClaimable(true);
-          setMessage('');
-        } else {
-          const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-          const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-          setMessage(`Wait ${hours} hours and ${minutes} minutes for the next claim.`);
-        }
-      }
-    };
 
-    updateRemainingTime();
-    const interval = setInterval(updateRemainingTime, 60000); 
+const animBlock = useRef()
 
-    return () => clearInterval(interval);
-  }, [nextClaimTime]);
+let timer;
 
-  const handleClaim = async () => {
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/claim-chest`, { telegram_id: thisUser?.telegram_id });
-      const { message, points_from_chest, next_claim_time } = response.data;
+useEffect(()=>{
+  if(animBlock.current){
+    timer = setTimeout(()=>{animBlock.current.classList.add(s.animBlock)},50)
+  }
 
-      setPointsFromChest(points_from_chest);
-      setMessage(message);
-      setNextClaimTime(next_claim_time);
-      setIsClaimable(false);
-    } catch (error) {
-      const errorMessage = error.response?.data?.error || 'Something went wrong.';
-      setMessage(errorMessage);
+  return () => {
+    clearTimeout(timer)
+  }
+},[])
 
-      if (error.response?.data?.remainingTime) {
-        setNextClaimTime(new Date(Date.now() + error.response.data.remainingTime).toISOString());
+
+useEffect(() => {
+  const calculateNextClaimTime = () => {
+    if (thisUser?.last_claim_time) {
+      const lastClaimTime = new Date(thisUser?.last_claim_time);
+      const nextClaimTime = new Date(lastClaimTime.getTime() + 8 * 60 * 60 * 1000); 
+      const currentTime = new Date();
+
+      const remaining = nextClaimTime - currentTime;
+
+      if (remaining <= 0) {
+        setIsClaimable(true);
+        setRemainingTime('');
+      } else {
+        
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        setRemainingTime(`${hours}h ${minutes}m`);
         setIsClaimable(false);
       }
     }
   };
 
+  calculateNextClaimTime();
+  const interval = setInterval(calculateNextClaimTime, 1000);
+
+  return () => clearInterval(interval);
+}, [thisUser?.last_claim_time]);
+
+const handleClaim = async () => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/claim-chest`, { telegram_id: thisUser?.telegram_id });
+    const { message, points_from_chest, next_claim_time } = response.data;
+
+    setPointsFromChest(points_from_chest);
+    setMessage(message);
+    setIsClaimable(false);
+    setRemainingTime(`8h 00m`)
+
+   
+    setThisUser((prev) => ({
+      ...prev,
+      points: prev.points + points_from_chest,
+      points_from_chest: points_from_chest,
+      
+    }));
+
+    setNotific(`You received +${points_from_chest} points`);
+    confettiReward();
+
+    // Рассчитываем оставшееся время на основе next_claim_time с сервера
+//     const nextClaimDate = new Date(next_claim_time);
+//     const currentTime = new Date();
+//     const remainingMs = nextClaimDate - currentTime;
+// 
+//     if (remainingMs <= 0) {
+//       setRemainingTime('');
+//       setIsClaimable(true);
+//     } else {
+//       const hours = Math.floor(remainingMs / (1000 * 60 * 60)); // Часы
+//       const minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60)); // Минуты
+//       setRemainingTime(`${hours}h ${minutes}m`);
+//     }
+  } catch (error) {
+    const errorMessage = error.response?.data?.error || 'Something went wrong.';
+    setMessage(errorMessage);
+
+    if (error.response?.data?.remainingTime) {
+      const remainingMs = error.response.data.remainingTime;
+      const nextClaimTime = new Date(Date.now() + remainingMs).toISOString();
+      setIsClaimable(false);
+      setRemainingTime(nextClaimTime);
+    }
+  }
+};
+
   return (
     <div className={s.megaContainer}>
-      <div className={s.miniContainer}>
-        <h1>Claim Your Points</h1>
-        <div className={s.message}>{message}</div>
-        {pointsFromChest !== null && <div className={s.points}>You received: {pointsFromChest} points!</div>}
-        <button
-          onClick={handleClaim}
-          disabled={!isClaimable}
-          className={`${s.button} ${!isClaimable ? s.disabled : ''}`}
-        >
-          {isClaimable ? 'Claim Points' : 'Not Available'}
-        </button>
+      <div className={s.miniContainer} ref={animBlock}>
+        <div className={s.content1}>
+          <span className={s.miniItem1}>GIFT FROM SANTA</span>
+          <span className={s.miniItem2}>TAKE YOUR PRIZE</span>
+          <span className={s.miniItem3}>EVERY 8 HOURS</span>
+        </div>
+        <div className={s.content2}>
+          <div className={s.PointsContent}>
+            {thisUser?.points_from_chest !== null ? (
+              <div className={s.points} id="confettiReward">
+                Last received: <CountUp end={thisUser?.points_from_chest} preserveValue={true} />
+                <img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" />
+              </div>
+            ) : (
+              0
+            )}
+          </div>
+          <button
+            onClick={handleClaim}
+            disabled={!isClaimable}
+            className={`${s.button} ${!isClaimable ? s.disabled : ''}`}
+          >
+            {isClaimable ? 'Claim' : remainingTime || 'Not Available'}
+          </button>
+        </div>
       </div>
     </div>
   );

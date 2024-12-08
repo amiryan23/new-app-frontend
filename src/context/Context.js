@@ -16,6 +16,7 @@ const [referralUsers, setReferralUsers] = useState(null);
 const [taskCompleted,setTaskCompleted] = useState(null)
 const [shopItems, setShopItems] = useState(null);
 const [isLoaded,setIsLoaded] = useState(0)
+const [remainingTime, setRemainingTime] = useState('');
 
 
 
@@ -111,8 +112,10 @@ const tg = window.Telegram.WebApp
         referralUsers,
         shopItems,
         isLoaded,
-        setIsLoaded
-        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,shopItems,isLoaded,setIsLoaded]);
+        setIsLoaded,
+        remainingTime, 
+        setRemainingTime
+        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,remainingTime,shopItems,isLoaded,setIsLoaded]);
 
   return (
     <MyContext.Provider 

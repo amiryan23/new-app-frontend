@@ -1,5 +1,6 @@
 .megaContainer{
 	width: 100%;
+	height: 120vh;
 	user-select: none;
 	font-weight: bold;
 	font-family: "Exo 2", sans-serif;
@@ -466,6 +467,8 @@
  		border-radius: 5px;
  		background-image: url("https://i.ibb.co/pWVbQ0w/5.png");
   	background-size: 100% 100%;
+  	border: 1px solid #999;
+  	overflow: hidden;
 
 
   	.miniBlock1{
@@ -533,6 +536,8 @@
  		border-radius: 5px;
  		background-image: url("https://i.ibb.co/ZXxxvjg/bckg1.png");
   	background-size: 100% 100%;
+  	border: 1px solid #999;
+  	overflow: hidden;
 
 
   	.miniBlock1{
@@ -602,6 +607,8 @@
  		border-radius: 5px;
  		background-image: url("https://i.ibb.co/pWVbQ0w/5.png");
   	background-size: 100% 100%;
+  	border: 1px solid #999;
+  	overflow: hidden;
 
    	.miniBlock1{
   		width: 100%;
@@ -648,6 +655,18 @@
     	}
     }
 
+    .claimed{
+    	flex: 1;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+
+    	svg{
+    		color: whitesmoke;
+    		font-size: 45px;
+    	}
+    }
+
   	}
 
  	}
@@ -659,6 +678,8 @@
  		border-radius: 5px;
  		background-image: url("https://i.ibb.co/ZXxxvjg/bckg1.png");
   	background-size: 100% 100%;
+  	border: 1px solid #999;
+  	overflow: hidden;
 
    	.miniBlock1{
   		width: 100%;
@@ -702,6 +723,18 @@
     		height: 60px;
 
 					filter: drop-shadow(1px 1px 3px #222);
+    	}
+    }
+
+    .claimed{
+    	flex: 1;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+
+    	svg{
+    		color: whitesmoke;
+    		font-size: 45px;
     	}
     }
 

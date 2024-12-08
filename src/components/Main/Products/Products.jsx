@@ -7,6 +7,7 @@ import { IoCheckmarkDoneSharp,IoLockClosed } from "react-icons/io5";
 import CountUp from 'react-countup';
 import { IoKeySharp } from "react-icons/io5";
 import { MdDone } from "react-icons/md";
+import { useReward } from 'react-rewards';
 
 
 const Products = () => {
@@ -22,6 +23,8 @@ const Products = () => {
 	const animBlock1 = useRef()
 	const animBlock2 = useRef()
 	const dialogRef2 = useRef() 
+
+	const {reward: confettiReward, isAnimating: isConfettiAnimating} = useReward('confettiReward', 'confetti');
 
 
 	let timer1;
@@ -113,6 +116,7 @@ const handleClaimTask = async (taskId, keysReward) => {
 
     
     setNotific('Claimed');
+    confettiReward()
   } catch (error) {
     console.error('Error claiming task:', error.response?.data || error.message);
   }
@@ -175,6 +179,7 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
       )
     );
     setNotific("Claimed")
+    confettiReward()
   } catch (error) {
     console.error('Error claiming task:', error.response?.data || error.message);
   }
@@ -343,7 +348,7 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 					</div>
 				</div>
 				<div className={s.dailyTasksContainer}>
-				<div className={s.Block1}>{thisUser?.tema === "Elves" ? "Tasks For Elves" : "Tasks For Deers"}</div>
+				<div className={s.Block1} id="confettiReward">{thisUser?.tema === "Elves" ? "Tasks For Elves" : "Tasks For Deers"}</div>
 				<div className={s.Block2}>
 				{thisUser?.team === "Elves" 
 				?
