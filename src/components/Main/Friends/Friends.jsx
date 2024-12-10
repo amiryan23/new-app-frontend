@@ -4,6 +4,7 @@ import React,{useContext,useRef,useEffect,useState} from 'react'
 import { MyContext } from './../../../context/Context'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import { IoKeySharp } from "react-icons/io5";
 
 const Friends = () => {
 
@@ -58,7 +59,7 @@ const Friends = () => {
   	<div className={s.refContent} key={index}>
 						<span className={s.item1}><IoPersonAdd/></span>
 						<span className={s.item2}>{ref.first_name}</span>
-						<span className={s.item3}>+250</span>
+						<span className={s.item3}>+250<img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /> +1 <IoKeySharp/></span>
 	</div>) 
   : "Loading"
 
@@ -72,7 +73,7 @@ const Friends = () => {
 				</div>
 				<div className={s.content2}>
 					<div className={s.miniContent}>
-					<span className={s.item1}>Your invaiton link</span>
+					<span className={s.item1}>Your invaiton link<span className={s.rewardItem}>(+250<img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /> +1 <IoKeySharp/> )</span></span>
 					<span className={s.item2} onClick={handleCopy}>
 					<input type="text" value={thisUser?.referral_code} disabled={true} />
 					<IoCopy />
