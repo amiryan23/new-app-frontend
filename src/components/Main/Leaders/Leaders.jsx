@@ -27,7 +27,7 @@ const Leaders = () => {
 		? <img src={user.photo_url} alt="" /> 
 		:  <span className={s.noPhoto}><FaSnowman/></span> }
 		{user.team}</span>
-		<span className={s.block2}>{user.first_name.length > 15 ? `${user.first_name.slice(0,15)}...` : user.first_name}</span>
+		<span className={s.block2}>{user.first_name.length > 10 ? `${user.first_name.slice(0,10)}...` : user.first_name}</span>
 		</div>
 		<div className={s.miniItem2}>{user.points}</div>
 	</div>)

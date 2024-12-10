@@ -8,12 +8,14 @@ import { useTonAddress  } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk'
 import { SiSharex } from "react-icons/si";
 import { FaUserFriends } from "react-icons/fa";
+import { MdOutlineAddToHomeScreen } from "react-icons/md";
 
 
 const Earn = () => {
 
 	const [taskOtherCompleted,setTaskOtherCompleted] = useState()
 	const [taskStory,setTaskStory] = useState(false)
+	// const [taskHomeScreen,setTaskHomeScreen] = useState()
 
 	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers} = useContext(MyContext);
 
@@ -123,6 +125,35 @@ useEffect(()=>{
 						}
 					</div> )
 	: ""
+
+	// 	const taskTableAddToHomeScreen = tasks ?
+	// tasks.filter(task=> task.type === 'homescreen').map(task=>  <div className={s.taskContainer} key={task.id}>
+	// 					<span className={s.item1}>
+	// 						<MdOutlineAddToHomeScreen/>
+	// 					</span>
+	// 					<span className={s.item2}>
+	// 						{task.description}
+	// 					</span>
+	// 					{task.is_completed.includes(thisUser?.telegram_id)
+	// 					? <span className={s.item3}>
+	// 						<span className={s.claimed}><MdDone/></span>
+	// 						<span>+{task.reward}</span>
+	// 					</span> 
+	// 					:<span className={s.item3}>
+	// 						{taskHomeScreen === task.id 
+	// 						?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+	// 						: <span className={s.linkItem} 
+	// 							onClick={()=>{
+	// 								setTaskHomeScreen(task.id)
+	// 								// window.Telegram.WebApp.addToHomeScreen()
+	// 							
+	// 							}} >Start</span>
+	// 						}
+	// 						<span>+{task.reward}</span>
+	// 					</span>
+	// 					}
+	// 				</div> )
+	// : ""
 
 
 	const taskTableStory = tasks ?

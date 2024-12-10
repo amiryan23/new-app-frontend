@@ -54,7 +54,7 @@ let timer;
 		  level.id === selectedLevel.id ? newDataLevel : level
 		);
 		setLevels(updatedLevels);
-		setNotific("Yeah code is done)")
+		setNotific("The code is correct")
 
       })
 		.catch(err => {
@@ -96,7 +96,7 @@ let timer;
      setTimeout(()=>{
      	setThisUser({...thisUser,points:thisUser.points + selectedLevel.reward})
   		window.history.back(-1)
-  		setNotific("Claimed")
+  		setNotific(`You received +${selectedLevel.reward} Points`)
      },3000)
 
   }
@@ -181,7 +181,7 @@ async function openInvoice( price ) {
 								<div className={s.item2}>
 									<img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" />
 								</div>
-								<div className={s.item1}>Yeahh, this is the correct answer)), how did you guess? Share with friends or not? Decide for yourself :3</div>
+								<div className={s.item1}>Yes, this is the correct answer, how did you guess? Share with friends or not? Decide for yourself :3</div>
 								<div className={s.item3}>
 									<button onClick={claimFunction} ref={btn}>Claim</button>
 									<span>+ {selectedLevel?.reward} <img src="https://i.ibb.co/1Zg54G1/coin.png" alt="" /></span>
@@ -191,13 +191,13 @@ async function openInvoice( price ) {
 					:<>
 					<div className={s.miniContent}><Link to="/" className={s.content}><RiArrowGoBackLine/></Link><Link to='/shop' className={s.item}>{thisUser?.keysForCode}<IoKeySharp/></Link></div>
 					<div className={s.content1}>
-						{/* <img src={selectedLevel.imgUrl} alt="" /> */}
+						<img src={selectedLevel.imgUrl} alt="" />
 					</div>
 					<div className={s.content2}>
 						<input value={code} placeholder="Enter your code" onChange={(e)=>{setCode(e.target.value)}}type="text" maxLength={16} />
 					</div>
 					<div className={s.content3}>
-						{invalid && thisUser?.keysForCode > 0 ? <sapn className={s.invalid}>No no no,this code invalid ({disabled})</sapn> : ""}
+						{invalid && thisUser?.keysForCode > 0 ? <sapn className={s.invalid}>The code is incorrect, fren. ({disabled})</sapn> : ""}
 						<span className={s.item}>
 						{thisUser?.keysForCode > 0 ? <button ref={btn2} onClick={handleVerify} >Check <IoKeySharp/></button> : <button disabled={true} onClick={handleVerify} >Done</button>}
 						<button className={s.buyStarsButton} onClick={()=>{openInvoice(skipLevel?.price)}}>{skipLevel?.name}<FaStar/></button>
