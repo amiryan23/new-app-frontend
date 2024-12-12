@@ -33,7 +33,7 @@ const shareToStory = (mediaUrl, params = {}) => {
 };
 
 
-const mediaUrl = "https://i.ibb.co/ZKnG8pJ/2.png";
+const mediaUrl = "https://new-app-santa-quest.netlify.app/story.mp4";
 const params = {
   text: `Hi fren! Join us, let's solve Santa's riddles together! 🎅 ${thisUser?.referral_code}` , 
   widget_link: {

@@ -9,6 +9,7 @@ import Wallet from './Wallet/Wallet'
 import Shop from './Shop/Shop'
 import WheelGame from './miniGames/Wheel/Wheel'
 import ClaimPoints from './ClaimPoints/ClaimPoints'
+import EarnBlocks from './EarnBlocks/EarnBlocks'
 import { Route,Routes,useParams  } from 'react-router-dom';
 
 
@@ -30,6 +31,7 @@ const Main = () => {
 			<Route path="/shop" element={<Shop/>} />
 			<Route path="/wheel" element={<WheelGame/>} />
 			<Route path="/claimPoints" element={<ClaimPoints/>} />
+			<Route path="/earnBlocks" element={<EarnBlocks/>} />
 		</Routes>
 		</main>
 		)

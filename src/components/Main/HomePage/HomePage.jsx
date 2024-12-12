@@ -99,6 +99,11 @@ const HomePage = () => {
 				<span className={s.miniItem1}>&#127873;</span>
 				<span className={s.miniItem2}>Gift</span>
 			</Link>
+			<Link to='/earnBlocks' className={s.linkForEarnBlocks}>
+				
+				<span className={s.miniItem1}>&#x26cf;</span>
+				<span className={s.miniItem2}>Mining</span>
+			</Link>
 			</div>
 		</div>
 		)
