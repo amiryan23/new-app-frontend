@@ -194,7 +194,7 @@ async function openInvoice( price ) {
 						<img src={selectedLevel.imgUrl} alt="" />
 					</div>
 					<div className={s.content2}>
-						<input value={code} placeholder="Enter your code" onChange={(e)=>{setCode(e.target.value)}}type="text" maxLength={16} />
+						<input value={code} placeholder="Enter secret code" onChange={(e)=>{setCode(e.target.value)}}type="text" maxLength={16} />
 					</div>
 					<div className={s.content3}>
 						{invalid && thisUser?.keysForCode > 0 ? <sapn className={s.invalid}>The code is incorrect, fren. ({disabled})</sapn> : ""}

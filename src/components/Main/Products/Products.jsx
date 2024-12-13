@@ -129,7 +129,7 @@ const handleClaimTask = async (taskId, keysReward) => {
 						<div className={referralUsers?.length >= task.earnedPoints ? `${s.itemElves1} ${s.taskCompleted}` : s.itemElves1} 
 						onClick={()=>{referralUsers?.length >= task.earnedPoints && handleClaimTask(task.id,task.reward)}}>
 						<span className={s.miniBlock1}>
-							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length}/${task.earnedPoints}`}</span></span>
+							<span className={s.taskItem1}>{task.description} <span className={s.taskMiniItem}>{`${referralUsers?.length || 0}/${task.earnedPoints}`}</span></span>
 							<span className={s.taskItem2}>+{task.reward} <IoKeySharp/></span>
 						</span>
 					</div>

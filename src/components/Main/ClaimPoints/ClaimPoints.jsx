@@ -9,8 +9,9 @@ const ClaimPoints = () => {
   const [pointsFromChest, setPointsFromChest] = useState(null);
   const [message, setMessage] = useState('');
   const [isClaimable, setIsClaimable] = useState(true);
+  const [remainingTime, setRemainingTime] = useState('');
   
-  const { thisUser, setThisUser, setNotific ,remainingTime, setRemainingTime} = useContext(MyContext);
+  const { thisUser, setThisUser, setNotific , claimTime, setClaimTime} = useContext(MyContext);
 
   const { reward: confettiReward, isAnimating: isConfettiAnimating } = useReward('confettiReward', 'confetti');
 
@@ -29,6 +30,7 @@ useEffect(()=>{
   }
 },[])
 
+  const lastClaim = thisUser?.last_claim_time
 
 useEffect(() => {
   const calculateNextClaimTime = () => {
@@ -39,7 +41,7 @@ useEffect(() => {
 
       const remaining = nextClaimTime - currentTime;
 
-      if (remaining <= 0) {
+      if (!claimTime && remaining <= 0) {
         setIsClaimable(true);
         setRemainingTime('');
       } else {
@@ -56,7 +58,7 @@ useEffect(() => {
   const interval = setInterval(calculateNextClaimTime, 1000);
 
   return () => clearInterval(interval);
-}, [thisUser?.last_claim_time]);
+}, [lastClaim]);
 
 const handleClaim = async () => {
   try {
@@ -66,7 +68,7 @@ const handleClaim = async () => {
     setPointsFromChest(points_from_chest);
     setMessage(message);
     setIsClaimable(false);
-    setRemainingTime(`8h 00m`)
+    setClaimTime(`8h 00m`)
 
    
     setThisUser((prev) => ({
@@ -106,14 +108,7 @@ const handleClaim = async () => {
 };
 
   return (
-    <div className={s.megaContainer}>
-      <div className={s.miniContainer} ref={animBlock}>
-        <div className={s.content1}>
-          <span className={s.miniItem1}>GIFT FROM SANTA</span>
-          <span className={s.miniItem2}>TAKE YOUR PRIZE</span>
-          <span className={s.miniItem3}>EVERY 8 HOURS</span>
-        </div>
-        <div className={s.content2}>
+        <div className={s.pointsContent2}>
           <div className={s.PointsContent}>
             {thisUser?.points_from_chest !== null ? (
               <div className={s.points} id="confettiReward">
@@ -126,14 +121,12 @@ const handleClaim = async () => {
           </div>
           <button
             onClick={handleClaim}
-            disabled={!isClaimable}
-            className={`${s.button} ${!isClaimable ? s.disabled : ''}`}
+            disabled={claimTime  || !isClaimable  ? true : false}
+            
           >
-            {isClaimable ? 'Claim' : remainingTime || 'Not Available'}
+            {isClaimable && !claimTime ? 'Claim' :  claimTime || remainingTime }
           </button>
         </div>
-      </div>
-    </div>
   );
 };
 

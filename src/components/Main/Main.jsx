@@ -8,7 +8,7 @@ import Friends from './Friends/Friends'
 import Wallet from './Wallet/Wallet'
 import Shop from './Shop/Shop'
 import WheelGame from './miniGames/Wheel/Wheel'
-import ClaimPoints from './ClaimPoints/ClaimPoints'
+import GiftPage from './GiftPage/GiftPage'
 import EarnBlocks from './EarnBlocks/EarnBlocks'
 import { Route,Routes,useParams  } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const Main = () => {
 			<Route path="/wallet" element={<Wallet/>} />
 			<Route path="/shop" element={<Shop/>} />
 			<Route path="/wheel" element={<WheelGame/>} />
-			<Route path="/claimPoints" element={<ClaimPoints/>} />
+			<Route path="/gift" element={<GiftPage/>} />
 			<Route path="/earnBlocks" element={<EarnBlocks/>} />
 		</Routes>
 		</main>

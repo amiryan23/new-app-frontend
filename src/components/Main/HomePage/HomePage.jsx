@@ -5,6 +5,7 @@ import { MyContext } from './../../../context/Context'
 import React,{useContext,useRef,useEffect} from 'react'
 import { IoLockClosed } from "react-icons/io5";
 import { IoKeySharp } from "react-icons/io5";
+import ClaimPoints from './../ClaimPoints/ClaimPoints'
 
 const HomePage = () => {
 	let helper1 = localStorage.getItem('helper_santa_1')
@@ -59,8 +60,7 @@ const HomePage = () => {
 			<div className={s.content2} ref={animBlock2}>
 			{helper1 === "is_read" 
 			? <span className={s.miniCont}>
-				<span className={s.santaText}>I give you 3 Keys to solve the riddle. Remember, each wrong answer will take away 1 Key from you, so solve the riddle carefully and without rushing. Best regards, Santa.</span>
-				<span className={s.keysItem}>{thisUser?.keysForCode}<IoKeySharp/></span>
+				<ClaimPoints/>
 				</span>
 
 			:<><Typewriter
@@ -94,7 +94,7 @@ const HomePage = () => {
 				<span className={s.miniItem1}>&#x1f3a1;</span>
 				<span className={s.miniItem2}>Wheel</span>
 			</Link>
-			<Link to='/claimPoints' className={s.linkForClaimPoints}>
+			<Link to='/gift' className={s.linkForClaimPoints}>
 				
 				<span className={s.miniItem1}>&#127873;</span>
 				<span className={s.miniItem2}>Gift</span>

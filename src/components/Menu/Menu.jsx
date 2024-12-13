@@ -7,6 +7,7 @@ import React,{useState,useContext} from 'react'
 import {Link} from 'react-router-dom'
 import { MyContext } from './../../context/Context'
 import { RiTeamFill } from "react-icons/ri";
+import { GiTrophyCup } from "react-icons/gi";
 
 const Menu = () => {
 
@@ -42,7 +43,7 @@ const Menu = () => {
 				setActiveLink((prevActiveLink)=>"leaders")
 
 			}}>
-			Leaders <MdReviews/></Link>
+			Leaders <GiTrophyCup/></Link>
 			<Link 
 			to="friends"
 			className={activeLink === "friends" ? `${s.content1} ${s.activeLink}` : s.content1}

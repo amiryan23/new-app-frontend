@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useContext, useState, useRef ,useMemo} from 'react';
+import React, { createContext, useEffect,  useState ,useMemo} from 'react';
 import axios from 'axios'
 import WebApp from '@twa-dev/sdk'
 const MyContext = createContext();
@@ -16,7 +16,7 @@ const [referralUsers, setReferralUsers] = useState(null);
 const [taskCompleted,setTaskCompleted] = useState(null)
 const [shopItems, setShopItems] = useState(null);
 const [isLoaded,setIsLoaded] = useState(0)
-const [remainingTime, setRemainingTime] = useState('');
+const [claimTime, setClaimTime] = useState('');
 
 
 
@@ -113,9 +113,9 @@ const tg = window.Telegram.WebApp
         shopItems,
         isLoaded,
         setIsLoaded,
-        remainingTime, 
-        setRemainingTime
-        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,remainingTime,shopItems,isLoaded,setIsLoaded]);
+        claimTime,
+         setClaimTime
+        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,claimTime,shopItems,isLoaded,setIsLoaded]);
 
   return (
     <MyContext.Provider 
