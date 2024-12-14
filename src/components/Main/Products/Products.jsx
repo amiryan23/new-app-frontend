@@ -348,7 +348,7 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
 					</div>
 				</div>
 				<div className={s.dailyTasksContainer}>
-				<div className={s.Block1} id="confettiReward">{thisUser?.tema === "Elves" ? "Tasks For Elves" : "Tasks For Deers"}</div>
+				<div className={s.Block1} id="confettiReward">{thisUser?.team === "Elves" ? "Tasks For Elves" : "Tasks For Deers"}</div>
 				<div className={s.Block2}>
 				{thisUser?.team === "Elves" 
 				?

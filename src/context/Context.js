@@ -1,6 +1,8 @@
 import React, { createContext, useEffect,  useState ,useMemo} from 'react';
 import axios from 'axios'
 import WebApp from '@twa-dev/sdk'
+import eruda from 'eruda'
+
 const MyContext = createContext();
 
 
@@ -27,7 +29,8 @@ const [claimTime, setClaimTime] = useState('');
     window.Telegram.WebApp.expand();
 
 const tg = window.Telegram.WebApp
-
+  
+  
 
     const userData =  {
       telegram_id: tg?.initDataUnsafe?.user?.id ,
