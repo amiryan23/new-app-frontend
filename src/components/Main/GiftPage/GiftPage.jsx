@@ -17,7 +17,7 @@ import CreateGift from './CreateGift/CreateGift'
 
 const GiftPage = () => {
 
-	const {  thisUser,setThisUser,setNotific} = useContext(MyContext);
+	const {  thisUser,setThisUser,setNotific,setActiveLink} = useContext(MyContext);
 
 	const [giftModal,setGiftModal] = useState(false)
 	const [openCreateModal,setOpenCreateModal] = useState(false)
@@ -174,8 +174,11 @@ const GiftPage = () => {
 		<div className={s.megaContainer}>
 			<div className={s.miniContainer} ref={animBlock}>
 			<div className={s.content1}>
-			<Link to="/" className={s.content}><RiArrowGoBackLine/></Link>
-			<Link to='/shop' className={s.item}>{thisUser?.keysForCode}<IoKeySharp/></Link>
+			{/* <Link to="/" className={s.content} onClick={()=>{setActiveLink("game")}}><RiArrowGoBackLine/></Link> */}
+			{/* <Link to='/shop' className={s.item}>{thisUser?.keysForCode}<IoKeySharp/></Link> */}
+					<span className={s.miniItem1}>GIFTS</span>
+					<span className={s.miniItem2}>TAKE A GIFT FROM OTHERS</span>
+					<span className={s.miniItem3}>OR SEND ONE TO THEM</span>
 			</div>
 			<div className={s.content2}>
 				<span className={s.giftListItem1}>List of gifts</span>

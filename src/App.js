@@ -28,7 +28,8 @@ useEffect(() => {
       "https://i.ibb.co/1Zg54G1/coin.png",
       "https://i.ibb.co/zRZtxh7/background1.jpg",
       "https://i.ibb.co/pWVbQ0w/5.png",
-      "https://i.ibb.co/ZXxxvjg/bckg1.png"
+      "https://i.ibb.co/ZXxxvjg/bckg1.png",
+      "https://i.ibb.co/2gD71Jp/Gift.png"
     ];
 
     try {

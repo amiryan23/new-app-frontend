@@ -14,7 +14,7 @@
     -moz-backdrop-filter:  blur(2px);
     -ms-backdrop-filter:   blur(2px);
     -o-backdrop-filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.5);
+    // background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -24,49 +24,39 @@
     transform: translateY(-50px);
     transition: 150ms linear;
 
-.content1{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
+    .content1{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: flex-start;
+        // align-items: center;
+      font-family: "Exo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  margin: 10px 40px 10px 20px;
 
-        .content{
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            text-decoration: none;
+        .miniItem1{
+            font-size: 45px;
             color: whitesmoke;
-            font-size: 25px;
+            font-weight: bold;
         }
 
-        .item{
-            text-decoration: none;
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-            align-items: center;
-            justify-content: center;
-            color: whitesmoke;
-            font-size: 17px;
+        .miniItem2{
+            font-size: 20px;
+  background: -webkit-linear-gradient(159deg, rgba(171,85,255,1) 15%, rgba(235,167,255,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
             font-weight: bold;
 
-            svg{
-                font-size: 25px;
-                color: goldenrod;
-            }
-
-            .miniItem{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                svg{
-                    color: #999;
-                    font-size: 15px;
-                }
-            }
+            
         }
-     }
+
+        .miniItem3{
+            font-size: 17px;
+            color: whitesmoke;
+            font-weight: bold;
+        }
+    }
 
      .content2{
         width: 100%;
@@ -76,7 +66,8 @@
     -moz-backdrop-filter:  blur(2px);
     -ms-backdrop-filter:   blur(2px);
     -o-backdrop-filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(40, 44, 52, 0.5);
+    // background: linear-gradient(159deg, rgba(189,157,228,0.5) 0%, rgba(67,38,163,0.5) 93%);
     display: flex;
         border: 1px solid rgba(256, 256, 256, 0.3);
         border-radius: 7px;
@@ -118,7 +109,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            color: #999;
+            // color: #999;
             justify-content: space-between;
             align-items: center;
             padding: 3px;
@@ -146,6 +137,7 @@
                 flex: 1;
                 font-size: 9px;
                 word-break: break-word;
+                color: whitesmoke;
 
                 img{
                     width: 30px;
@@ -176,6 +168,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                color: whitesmoke;
             }
 
             .giftBlock4{
@@ -215,7 +208,7 @@
 
     .content3{
         width: 100%;
-        height: 150px;
+        // height: 150px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -235,7 +228,8 @@
             text-decoration: none;
             padding: 5px 45px 5px 45px;
             // background: linear-gradient(159deg, rgba(189,157,228,1) 0%, rgba(67,38,163,1) 93%);
-            background: transparent;
+            background-color: rgba(40, 44, 52, 0.5);
+            // background: transparent;
             cursor: pointer;
             margin-top: 5px;
             transition: 250ms linear;

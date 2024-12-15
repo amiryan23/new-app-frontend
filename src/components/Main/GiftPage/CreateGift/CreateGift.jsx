@@ -46,7 +46,7 @@ const CreateGift = ({openCreateModal,setOpenCreateModal}) => {
         setOpenCreateModal(false)
         setLoading(false)
         setThisUser({...thisUser,points:thisUser?.points - (giftData.limite * 500)})
-        setNotific("Sended to moderation")
+        setNotific("Sent for moderation.")
     } catch (error) {
         console.error('Error creating gift:', error.response?.data?.error || error.message);
         alert('Failed to create gift');

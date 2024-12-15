@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 import { MyContext } from './../../context/Context'
 import { RiTeamFill } from "react-icons/ri";
 import { GiTrophyCup } from "react-icons/gi";
+import { FaGift } from "react-icons/fa6";
 
 const Menu = () => {
 
@@ -29,13 +30,13 @@ const Menu = () => {
 			}}>
 			Home <FaGamepad /></Link>
 			<Link 
-			to="/products"
+			to="/gift"
 			className={activeLink === "product" ? `${s.content1} ${s.activeLink}` : s.content1}
 			onClick={()=>{
 				setActiveLink((prevActiveLink)=>"product")
 
 			}}>
-			Team <RiTeamFill/></Link>
+			Gifts <FaGift/></Link>
 			<Link 
 			to="/leaders"
 			className={activeLink === "leaders" ? `${s.content1} ${s.activeLink}` : s.content1}
@@ -45,7 +46,7 @@ const Menu = () => {
 			}}>
 			Leaders <GiTrophyCup/></Link>
 			<Link 
-			to="friends"
+			to="/friends"
 			className={activeLink === "friends" ? `${s.content1} ${s.activeLink}` : s.content1}
 			onClick={()=>{
 				setActiveLink((prevActiveLink)=>"friends")

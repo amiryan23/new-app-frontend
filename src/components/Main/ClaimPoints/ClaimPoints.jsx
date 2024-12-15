@@ -36,7 +36,7 @@ useEffect(() => {
   const calculateNextClaimTime = () => {
     if (thisUser?.last_claim_time) {
       const lastClaimTime = new Date(thisUser?.last_claim_time);
-      const nextClaimTime = new Date(lastClaimTime.getTime() + 8 * 60 * 60 * 1000); 
+      const nextClaimTime = new Date(lastClaimTime.getTime() + 1 * 60 * 60 * 1000); 
       const currentTime = new Date();
 
       const remaining = nextClaimTime - currentTime;
@@ -68,7 +68,7 @@ const handleClaim = async () => {
     setPointsFromChest(points_from_chest);
     setMessage(message);
     setIsClaimable(false);
-    setClaimTime(`8h 00m`)
+    setClaimTime(`1h 00m`)
 
    
     setThisUser((prev) => ({

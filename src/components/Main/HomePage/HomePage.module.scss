@@ -27,7 +27,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	transform: translateY(-20px);
+	transform: translateY(10px);
 
 	.content1{
 		width: 100%;
@@ -38,10 +38,14 @@
 		// transform: translateX(90px);
 
 		img{
-			width: 220px;
-			height: 220px;
+			width: 180px;
+			height: 180px;
 			filter: drop-shadow(1px 1px 15px rgba(40, 44, 52, 0.9));
-			transform: translateY(90px) translateX(-10px);
+			transform: translateY(0px) translateX(0px);
+			border: 1px solid whitesmoke;
+			background-color: rgba(256, 256, 256, 0.2);
+			border-radius: 50%;
+			padding-right: 10px;
 		}
 
 	}
@@ -49,7 +53,8 @@
 	.content2{
 		width: 325px;
 		height: 110px;
-		background-color:  rgba(40, 44, 52, 0.9);
+		// background-color:  rgba(40, 44, 52, 0.9);
+		background: linear-gradient(159deg, rgba(189,157,228,0.5) 0%, rgba(67,38,163,0.5) 93%);
 		border-radius: 7px;
 		padding: 10px;
 		color: whitesmoke;
@@ -184,7 +189,7 @@
 	justify-content: center;
 	gap: 10px;
 	user-select: none;
-	transform: translateY(-10px);
+	transform: translateY(0px);
 
 	.item{
 		width: 50px;
