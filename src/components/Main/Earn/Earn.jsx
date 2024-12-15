@@ -8,16 +8,18 @@ import { useTonAddress  } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk'
 import { SiSharex } from "react-icons/si";
 import { FaUserFriends } from "react-icons/fa";
-import { MdOutlineAddToHomeScreen } from "react-icons/md";
+import { MdOutlineAddToHomeScreen,MdOutlineDriveFileRenameOutline} from "react-icons/md";
+
 
 
 const Earn = () => {
 
 	const [taskOtherCompleted,setTaskOtherCompleted] = useState()
 	const [taskStory,setTaskStory] = useState(false)
-	// const [taskHomeScreen,setTaskHomeScreen] = useState()
+	const [checkEmoji,setCheckEmoji] = useState(false)
+	const [taskHomeScreen,setTaskHomeScreen] = useState()
 
-	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers} = useContext(MyContext);
+	const {  thisUser,setThisUser,levels,setLevels,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,gifts} = useContext(MyContext);
 
 	const userFriendlyAddress = useTonAddress();
 
@@ -31,6 +33,15 @@ const shareToStory = (mediaUrl, params = {}) => {
     console.error("Telegram WebApp API is not available or doesn't support shareToStory.");
   }
 };
+
+const addToHomeScreen = (task) => {
+	if (window.Telegram.WebApp && typeof window.Telegram.WebApp.addToHomeScreen === "function") {
+		window.Telegram.WebApp.addToHomeScreen()
+		setTaskHomeScreen(task)
+	} else {
+		console.error("Telegram WebApp API is not available or doesn't support addToHomeScreen .")
+	}
+}
 
 
 const mediaUrl = "https://new-app-santa-quest.netlify.app/story.mp4";
@@ -85,6 +96,16 @@ const handleClaimTaskWithPoints = async (taskId , reward) => {
   }
 };
 
+const checkForSantaEmoji = () => {
+  if (!thisUser || !thisUser.first_name) {
+    return false; 
+  }
+
+  if(thisUser?.first_name.includes('🎅🏻')){
+  	setCheckEmoji(true)
+  };
+}
+
 let timer;
 
 useEffect(()=>{
@@ -126,34 +147,63 @@ useEffect(()=>{
 					</div> )
 	: ""
 
-	// 	const taskTableAddToHomeScreen = tasks ?
-	// tasks.filter(task=> task.type === 'homescreen').map(task=>  <div className={s.taskContainer} key={task.id}>
-	// 					<span className={s.item1}>
-	// 						<MdOutlineAddToHomeScreen/>
-	// 					</span>
-	// 					<span className={s.item2}>
-	// 						{task.description}
-	// 					</span>
-	// 					{task.is_completed.includes(thisUser?.telegram_id)
-	// 					? <span className={s.item3}>
-	// 						<span className={s.claimed}><MdDone/></span>
-	// 						<span>+{task.reward}</span>
-	// 					</span> 
-	// 					:<span className={s.item3}>
-	// 						{taskHomeScreen === task.id 
-	// 						?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
-	// 						: <span className={s.linkItem} 
-	// 							onClick={()=>{
-	// 								setTaskHomeScreen(task.id)
-	// 								// window.Telegram.WebApp.addToHomeScreen()
-	// 							
-	// 							}} >Start</span>
-	// 						}
-	// 						<span>+{task.reward}</span>
-	// 					</span>
-	// 					}
-	// 				</div> )
-	// : ""
+		const taskTableEmoji = tasks ?
+	tasks.filter(task=> task.type === 'emoji').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<MdOutlineDriveFileRenameOutline/>
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{checkEmoji
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span className={s.linkItem} 
+								onClick={()=>{
+									checkForSantaEmoji()
+									
+								
+								}} >Check</span>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
+
+		const taskTableAddToHomeScreen = tasks ?
+	tasks.filter(task=> task.type === 'homescreen').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<MdOutlineAddToHomeScreen/>
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{taskHomeScreen === task.id 
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span className={s.linkItem} 
+								onClick={()=>{
+									
+									addToHomeScreen(task.id)
+								
+								}} >Start</span>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
 
 
 	const taskTableStory = tasks ?
@@ -237,6 +287,34 @@ useEffect(()=>{
 	: ""
 
 
+				const taskTableGifts = tasks ?
+	tasks.filter(task=> task.type === 'gifts').map(task=>  <div className={s.taskContainer} key={task.id}>
+						<span className={s.item1}>
+							<img src={task.imgUrl} alt="" />
+						</span>
+						<span className={s.item2}>
+							{task.description}
+						</span>
+						{task.is_completed.includes(thisUser?.telegram_id)
+						? <span className={s.item3}>
+							<span className={s.claimed}><MdDone/></span>
+							<span>+{task.reward}</span>
+						</span> 
+						:<span className={s.item3}>
+							{gifts 
+							?
+							gifts?.filter(gift => gift?.owner === thisUser?.telegram_id)?.reduce((sum, gift) => sum + (gift?.limite || 0), 0) >= task.earnedPoints
+							?	<button onClick={()=>{handleClaimTask(task.id,task.reward)}}>Claim</button>
+							: <span  className={s.linkItemRef}>{`${gifts?.filter(gift => gift?.owner === thisUser?.telegram_id)?.reduce((sum, gift) => sum + (gift?.limite || 0), 0) || 0}/${task.earnedPoints}`}</span>
+							: <Link className={s.linkItem} to="/gift">Check</Link>
+							}
+							<span>+{task.reward}</span>
+						</span>
+						}
+					</div> )
+	: ""
+
+
 
 	const taskTableEarn = tasks ?
 	tasks.filter(task => task.type === 'earn').map(task =>
@@ -304,6 +382,9 @@ useEffect(()=>{
 				<div className={s.content2}>
 				{taskTableLinks}
 				{taskTableOtherLinks}
+				{taskTableAddToHomeScreen}
+				{taskTableEmoji}
+				{taskTableGifts}
 				{taskTableReferral}
 				{taskTableStory}
 				{taskTableEarn}

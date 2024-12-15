@@ -32,7 +32,7 @@
 
 
 		.miniItem2{
-			width: 100%;
+			width: 50%;
 			// height: 100px;
 			background: linear-gradient(159deg, rgba(189,157,228,0.7) 0%, rgba(67,38,163,0.8) 93%);
 			align-self: center;
@@ -50,6 +50,62 @@
 			padding: 15px;
 			letter-spacing: 1px;
 
+		}
+
+		.typeTop{
+			width: 100vw;
+			display: flex;
+			flex-direction: row;
+			background-color:rgba(40, 44, 52, 0.5);
+			
+			border: 1px solid rgba(256, 256, 256, 0.3);
+			border-bottom: none;
+			border-radius: 6px;
+
+
+			.item1{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				gap: 7px;
+				border-right: 1px solid rgba(256, 256, 256, 0.3);
+				padding: 7px;
+				font-size: 15px;
+				font-weight: bold;
+				color: whitesmoke;
+				transition: 150ms linear;
+
+				img{
+					width: 35px;
+					height: 35px;
+				}
+			}
+
+			.item2{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				gap: 7px;
+				padding: 7px;
+				font-size: 15px;
+				font-weight: bold;
+				color: whitesmoke;
+				transition: 150ms linear;
+
+				img{
+					width: 30px;
+					height: 30px;
+				}
+			}
+
+			.active{
+				background:linear-gradient(159deg,  rgba(67,38,163,0.8) 0% ,rgba(189,157,228,0.7) 93%);
+				transition: 150ms linear;
+			}
 		}
 
 	}

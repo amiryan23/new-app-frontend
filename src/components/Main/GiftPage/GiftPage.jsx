@@ -17,13 +17,13 @@ import CreateGift from './CreateGift/CreateGift'
 
 const GiftPage = () => {
 
-	const {  thisUser,setThisUser,setNotific,setActiveLink} = useContext(MyContext);
+	const {  thisUser,setThisUser,setNotific,setActiveLink,gifts, setGifts} = useContext(MyContext);
 
 	const [giftModal,setGiftModal] = useState(false)
 	const [openCreateModal,setOpenCreateModal] = useState(false)
 	const [loading,setLoading] = useState(false)
 	const [giftOpening,setGiftOpening] = useState(false)
-	const [gifts, setGifts] = useState(null);
+	// const [gifts, setGifts] = useState(null);
 	const [thisGiftOptions,setThisGiftOptions] = useState(null)
 	const [giftTaskId,setGiftTaskId] = useState(null)
 
@@ -97,7 +97,14 @@ const GiftPage = () => {
 
 
 	const giftTabel = gifts 
-	? gifts.filter(gift=>gift.verified).map(gift=> 		
+	? gifts
+	.filter(gift=>gift.verified)
+	  .sort((a, b) => {
+    if (a.status === "Ended" && b.status !== "Ended") return 1;
+    if (a.status !== "Ended" && b.status === "Ended") return -1;
+    return b.limite - a.limite;
+  })
+	.map(gift=> 		
 				gift.verified	 &&	 <span className={s.giftListItem2} key={gift.id}>
 					<span className={s.giftBlock1}><img src="https://i.ibb.co/2gD71Jp/Gift.png" alt="" /></span>
 					<span className={s.giftBlock2}>
@@ -183,7 +190,7 @@ const GiftPage = () => {
 			<div className={s.content2}>
 				<span className={s.giftListItem1}>List of gifts</span>
 				<span className={s.giftListContainer}>
-					{gifts && giftTabel?.reverse()}
+					{gifts && giftTabel}
 				</span>
 			</div>
 			<div className={s.content3}>

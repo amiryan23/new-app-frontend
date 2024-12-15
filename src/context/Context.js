@@ -19,6 +19,7 @@ const [taskCompleted,setTaskCompleted] = useState(null)
 const [shopItems, setShopItems] = useState(null);
 const [isLoaded,setIsLoaded] = useState(0)
 const [claimTime, setClaimTime] = useState('');
+const [gifts, setGifts] = useState(null);
 
 
 
@@ -81,6 +82,15 @@ const tg = window.Telegram.WebApp
     })
     .catch(error => console.error('Error fetching shop items:', error));
 
+        axios.get(`${process.env.REACT_APP_API_URL}/gifts`)
+            .then(response => {
+                setGifts(response.data);
+                
+            })
+            .catch(err => {
+                console.error('Ошибка при получении данных:', err);
+                            
+            });   
     
     
       axios.post(`${process.env.REACT_APP_API_URL}/api/getReferralUsers`, {
@@ -117,8 +127,10 @@ const tg = window.Telegram.WebApp
         isLoaded,
         setIsLoaded,
         claimTime,
-         setClaimTime
-        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,claimTime,shopItems,isLoaded,setIsLoaded]);
+         setClaimTime,
+         gifts, 
+         setGifts
+        }), [thisUser,levels,users,activeLink,setActiveLink,notific,setNotific,tasks,setTasks,taskCompleted,setTaskCompleted,referralUsers,claimTime,gifts,shopItems,isLoaded,setIsLoaded]);
 
   return (
     <MyContext.Provider 
